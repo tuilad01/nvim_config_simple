@@ -32,7 +32,10 @@ vim.opt.autoindent = true
 vim.opt.expandtab = true
 -- keymap
 vim.keymap.set("n", "$", "g_")
- 
+vim.keymap.set("t", "<ESC>", "<C-\\><C-n>") 
+vim.keymap.set("n", "<leader>n", function()
+	vim.cmd([[Ex]])
+end)
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
