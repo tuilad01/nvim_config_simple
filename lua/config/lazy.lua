@@ -2,7 +2,7 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
@@ -29,13 +29,16 @@ vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 vim.opt.smartindent = true
 vim.opt.autoindent = true
-vim.opt.expandtab = true
 -- keymap
 vim.keymap.set("n", "$", "g_")
 vim.keymap.set("t", "<ESC>", "<C-\\><C-n>") 
 vim.keymap.set("n", "<leader>n", function()
 	vim.cmd([[Ex]])
 end)
+-- terminal
+vim.opt.shell = "powershell.exe"
+
+
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
