@@ -10,6 +10,7 @@ return {
 		"rafamadriz/friendly-snippets",
   },
   config = function()
+		require("luasnip")
 		local luasnip = require("luasnip")
 		-- Load default VSCode-style snippets (optional)
 		require("luasnip.loaders.from_vscode").lazy_load()
@@ -21,8 +22,7 @@ return {
 
 		 local cmp = require("cmp")
 		 local function selectItem(number)
-			 cmp.mapping(function(fallback)
-				 print("dat number" ..number)
+			 return cmp.mapping(function(fallback)
 				 if luasnip.jumpable(number) then
 					 luasnip.jump(number)
 				 elseif cmp.visible() then
@@ -36,24 +36,15 @@ return {
 				 end
 			 end, { "i", "s" })
 		 end
-		 local function selectNext(fallback)
-			 if luasnip.jumpable(1) then
-				 luasnip.jump(1)
-			 elseif cmp.visible() then
-				 cmp.select_next_item()
-			 else
-				 fallback()
-			 end
+
+		 local function selectNext()
+			 return selectItem(1) 
 		 end
-		 local function selectPrev(fallback)
-			 if luasnip.jumpable(-1) then
-				 luasnip.jump(-1)  -- Jump to previous placeholder
-			 elseif cmp.visible() then
-				 cmp.select_prev_item()  -- Move up the completion list
-			 else
-				 fallback()  -- If no completion, fallback to normal Shift+Tab behavior (e.g., outdent)
-			 end
+
+		 local function selectPrev()
+			 return selectItem(-1) 
 		 end
+
 		 cmp.setup({
 			 sources = {
 				 -- { name = "nvim_lsp" }
@@ -81,12 +72,12 @@ return {
 						 fallback()  -- If no completion, fallback to normal tab behavior (e.g., indent)
 					 end
 				 end, { "i", "s" }),
-				 ["<S-Tab>"] = cmp.mapping(selectPrev, {"i", "s"}),
+				 ["<S-Tab>"] = selectPrev(),
 				 ["<CR>"] = cmp.mapping.confirm({ select = true }),  -- Confirm with Enter				 
-				 ["<C-n>"] = cmp.mapping(selectNext, {"i", "s"}),
-				 ["<C-p>"] = cmp.mapping(selectPrev, {"i", "s"}),
-				 ["<Up>"] = cmp.mapping(selectPrev, {"i", "s"}),
-				 ["<Down>"] = cmp.mapping(selectNext, {"i", "s"}),
+				 ["<C-n>"] = selectNext(),
+				 ["<C-p>"] = selectPrev(),
+				 ["<Up>"] = selectPrev(),
+				 ["<Down>"] = selectNext(),
 			 },
 			 windows = {
 				 completion = cmp.config.window.bordered(),
