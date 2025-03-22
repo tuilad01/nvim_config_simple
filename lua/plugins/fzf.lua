@@ -6,18 +6,22 @@ return {
   -- dependencies = { "echasnovski/mini.icons" },
   opts = {},
   config = function () 
-	  require("fzf-lua").setup {}
+		local fzfLua = require("fzf-lua") 
+	  fzfLua.setup { "hide" }
 
-
+		local cwd = vim.fn.getcwd()
 	  -- map key
     vim.keymap.set("n", "<leader>b", function()
-      require("fzf-lua").buffers()
+      fzfLua.buffers({ cwd = cwd, resume = true })
 		end)
-	  vim.keymap.set("n", "<C-p>", function()
-		  require("fzf-lua").files({ resume = true })
+		vim.keymap.set("n", "<C-p>", function()
+		  fzfLua.files({ cwd = cwd, resume = true })
+	  end)
+	  vim.keymap.set("n", "<leader>p", function()
+		  fzfLua.files({ cwd = vim.fn.expand("%:p:h"), resume = true })
 	  end)
 	  vim.keymap.set("n", "<C-f>", function()
-		  require("fzf-lua").grep()
+		  fzfLua.grep({ cwd = cwd })
 	  end)
   end
 }

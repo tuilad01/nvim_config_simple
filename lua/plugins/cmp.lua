@@ -64,10 +64,10 @@ return {
 			 mapping = {
 				 ["<C-Space>"] = cmp.mapping.complete(),  -- Trigger completion manually
 				 ["<Tab>"] = cmp.mapping(function(fallback)
-					 if luasnip.expand_or_jumpable() then
-						 luasnip.expand_or_jump()  -- Expand snippet or jump
-					 elseif cmp.visible() then
+					 if cmp.visible() then
 						 cmp.confirm({ select = true })  -- Confirm completion with Tab
+					 elseif luasnip.expand_or_jumpable() then
+						 luasnip.expand_or_jump()  -- Expand snippet or jump
 					 else
 						 fallback()  -- If no completion, fallback to normal tab behavior (e.g., indent)
 					 end
@@ -78,6 +78,7 @@ return {
 				 ["<C-p>"] = selectPrev(),
 				 ["<Up>"] = selectPrev(),
 				 ["<Down>"] = selectNext(),
+				 ['<Esc>'] = cmp.mapping.abort()
 			 },
 			 windows = {
 				 completion = cmp.config.window.bordered(),
