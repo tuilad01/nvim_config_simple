@@ -11,10 +11,10 @@ return {
 
 		local cwd = vim.fn.getcwd()
 	  -- map key
-    vim.keymap.set("n", "<leader>b", function()
-      fzfLua.buffers({ cwd = cwd, resume = true })
-		end)
-		vim.keymap.set("n", "<C-p>", function()
+	  vim.keymap.set("n", "<leader>b", function()
+		  fzfLua.buffers({ cwd = cwd, resume = true })
+	  end)
+	  vim.keymap.set("n", "<C-p>", function()
 		  fzfLua.files({ cwd = cwd, resume = true })
 	  end)
 	  vim.keymap.set("n", "<leader>p", function()

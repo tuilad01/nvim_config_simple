@@ -25,6 +25,7 @@ vim.opt.scrolloff = 16
 vim.o.relativenumber = true
 vim.o.clipboard = "unnamedplus"
 vim.o.shada = ""
+vim.diagnostic.disable()
 -- tab
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2

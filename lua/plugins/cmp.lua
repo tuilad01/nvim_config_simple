@@ -8,8 +8,6 @@ return {
 		"L3MON4D3/LuaSnip",        -- Snippet support
 		"saauarwaiz1/cmp_luasnip", -- LuaSnip source for nvim-cmp
 		"rafamadriz/friendly-snippets",
-
-		"neovim/nvim-lspconfig",
 	},
 	config = function()
 		require("luasnip")
@@ -64,6 +62,7 @@ return {
 				["<C-p>"] = previous(),
 				["<Up>"] = previous(),
 				["<Down>"] = next(),
+				["<C-e>"] = cmp.mapping.abort(),
 				-- ['<Esc>'] = cmp.mapping.abort()
 			},
 			windows = {

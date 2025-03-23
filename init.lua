@@ -1,6 +1,46 @@
 require("config.lazy")
-
-
-
-
+--
+-- local function split(text, delimiter) 
+-- 	local result = {}
+--
+-- 	if delimiter == nil or delimiter == "" then
+-- 		delimiter = "%s"
+-- 	end
+--
+-- 	for item in string.gmatch(text, '([^'..delimiter..']+)') do
+-- 		table.insert(result, item)
+-- 	end
+--
+-- 	return result
+-- end
+--
+-- vim.keymap.set("v", "<leader>c", function ()
+-- 	-- Get the position of the start and end of the selection
+--   local start_pos = vim.fn.getpos("'<")  -- Start of the selection
+--   local end_pos = vim.fn.getpos("'>")    -- End of the selection
+--
+--   -- Extract the row and column information from the positions
+--   local start_row, start_col = start_pos[2], start_pos[3]  -- 0-indexed
+--   local end_row, end_col = end_pos[2], end_pos[3]  -- 0-indexed
+--
+--   -- Get the current buffer
+--   local bufnr = vim.api.nvim_get_current_buf()
+-- local linec> = vim.api.nvim_buf_get_lines(bufnr, start_row, end_row, false)
+--
+-- 	print(start_col .. "  " .. end_col)
+-- 	-- local text = lines[1]:sub(start_col, end_col)
+-- 	-- print(text)
+-- 	-- local changedText = vim.fn.input("Enter > ")
+-- 	--
+-- 	-- local arr = split(changedText, "|")
+-- 	-- local left, right = arr[1], arr[2]
+-- 	-- -- print(string.format("slient %%s/%s/%s/g", text, left .. text .. right))
+-- 	-- --!local substitution = string.format("slient %%s/(//g", text, left .. text .. right)
+-- 	-- vim.cmd(string.format("silent %%s/%s/%s/g", text, "("))
+-- 	vim.cmd("normal! <Esc>")
+--
+-- end)
+--
+--
+--
 
