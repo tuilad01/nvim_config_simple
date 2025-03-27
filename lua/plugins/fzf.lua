@@ -23,8 +23,10 @@ return {
 	  vim.keymap.set("n", "<C-f>", function()
 		  fzfLua.grep({ cwd = cwd })
 	  end)
-		-- vim.keymap.set("n", "gr", function()
-		-- 	fzfLua.lsp_references()
-		-- end)
-  end
+	  vim.keymap.set("n", "<leader><Space>", function()
+		  fzfLua.git_files({ resume = true })
+	  end)
+
+
+	end
 }
