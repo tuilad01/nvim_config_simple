@@ -23,6 +23,11 @@ return {
 		vim.api.nvim_create_autocmd('LspAttach', {
 			desc = 'LSP actions',
 			callback = function(event)
+				-- local client = vim.lsp.get_client_by_id(event.data.client_id)
+				-- if client:supports_method('textDocument/completion') then
+				-- 	vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
+				-- end
+
 				local opts = {buffer = event.buf}
 
 				vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
