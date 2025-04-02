@@ -39,7 +39,12 @@ vim.keymap.set("n", "<leader>n", function()
 	vim.cmd([[Ex]])
 end)
 -- terminal
-vim.opt.shell = "powershell.exe"
+-- vim.opt.shell = "powershell.exe"
+
+-- with open current current directory
+vim.keymap.set("n", "<leader>e", function()
+	vim.cmd([[!start %:p:h]])
+end)
 
 local function swapComponentAndTemplateAngular() 
 	local currentFileExtension = vim.fn.expand("%:e")
