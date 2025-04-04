@@ -20,56 +20,7 @@ vim.opt.rtp:prepend(lazypath)
 -- This is also a good place to setup other settings (vim.opt)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
-vim.o.number = true
-vim.opt.scrolloff = 16
-vim.o.relativenumber = true
-vim.o.clipboard = "unnamedplus"
-vim.o.shada = ""
-vim.diagnostic.disable()
--- tab
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.softtabstop = 2
-vim.opt.smartindent = true
-vim.opt.autoindent = true
--- keymap
-vim.keymap.set("n", "$", "g_")
-vim.keymap.set("t", "<ESC>", "<C-\\><C-n>") 
-vim.keymap.set("n", "<leader>n", function()
-	vim.cmd([[Ex]])
-end)
--- terminal
--- vim.opt.shell = "powershell.exe"
 
--- with open current current directory
-vim.keymap.set("n", "<leader>e", function()
-	vim.cmd([[!start %:p:h]])
-end)
-
-local function swapComponentAndTemplateAngular() 
-	local currentFileExtension = vim.fn.expand("%:e")
-	local swappingFileExtension = ""
-	if currentFileExtension == "html" then
-		swappingFileExtension = ".ts"
-	elseif currentFileExtension == "ts" then
-		swappingFileExtension = ".html"
-	else
-		print("Unsupported ." .. currentFileExtension)
-		return
-	end
-
-	local swappingFilePath = vim.api.nvim_buf_get_name(0):gsub("%."..currentFileExtension.."$", "%"..swappingFileExtension)
-	if swappingFilePath == "" then
-		print("Not found " .. swappingFileExtension)
-		return
-	end
-
-	vim.cmd("e " .. swappingFilePath)
-	print("Swapped " .. swappingFileExtension)
-end
-vim.keymap.set("n", "<leader>1", function()
-	swapComponentAndTemplateAngular()
-end)
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
