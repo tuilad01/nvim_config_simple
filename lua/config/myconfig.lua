@@ -2,9 +2,6 @@
 vim.o.number = true
 vim.opt.scrolloff = 16
 vim.o.relativenumber = true
-vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "LightGray" })
-vim.api.nvim_set_hl(0, "LineNr", { fg = "Gray" })
-vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "LightGray" })
 vim.o.clipboard = "unnamedplus"
 vim.o.shada = ""
 vim.diagnostic.disable()
@@ -15,12 +12,24 @@ vim.o.softtabstop = 2
 vim.o.smartindent = true
 vim.o.autoindent = true
 vim.o.expandtab = true
+
+-- Line number relative colors
+vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "LightGray" })
+vim.api.nvim_set_hl(0, "LineNr", { fg = "Gray" })
+vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "LightGray" })
+
 -- keymap
 vim.keymap.set("n", "$", "g_")
 vim.keymap.set("t", "<ESC>", "<C-\\><C-n>") 
 vim.keymap.set("n", "<leader>n", function()
 	vim.cmd([[Ex]])
 end)
+
+
+-- Move block code up and down
+vim.keymap.set("v", "<S-Down>", ":m '>+1<CR>gv=gv") -- down
+vim.keymap.set("v", "<S-Up>", ":m '<-2<CR>gv=gv") -- up
+
 -- terminal
 -- vim.opt.shell = "powershell.exe"
 
@@ -53,4 +62,5 @@ end
 vim.keymap.set("n", "<leader>1", function()
 	swapComponentAndTemplateAngular()
 end)
+
 
